@@ -17,11 +17,11 @@ func (job *Job) prepare() {
 }
 
 type Job struct {
-	ID               string    `valid:"uuid"`
+	ID               string    `valid:"uuid" gorm:"type:uuid;primary_key"`
 	OutputBucketPath string    `valid:"notnull"` //caminho de saida do video convertido
 	Status           string    `valid:"notnull"` //status do processamento do video
 	Video            *Video    `valid:"-"`
-	VideoId          string    `valid:"-"`
+	VideoId          string    `valid:"-" gorm:"column:video_id;type:uuid;notnull"`
 	Error            string    `valid:"-"`
 	CreatedAt        time.Time `valid:"-"`
 	UpdatedAt        time.Time `valid:"-"`

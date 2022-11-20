@@ -10,6 +10,7 @@ type Video struct {
 	ResourceID string    `valid:"notnull"` // id do sistema que envia o video
 	FilePath   string    `valid:"notnull"`
 	CreatedAt  time.Time `valid:"-"`
+	Jobs       []*Job
 }
 
 func init() {

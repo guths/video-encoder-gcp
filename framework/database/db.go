@@ -12,8 +12,6 @@ type Database struct {
 	Db            *gorm.DB
 	Dsn           string
 	DsnTest       string
-	DbType        string
-	DbTypeTest    string
 	Debug         bool
 	AutoMigrateDb bool
 	Env           string
@@ -26,7 +24,6 @@ func NewDb() *Database {
 func NewDbTest() *gorm.DB {
 	dbInstance := NewDb()
 	dbInstance.Env = "Test"
-	dbInstance.DbTypeTest = "sqlite3"
 	dbInstance.DsnTest = ":memory:"
 	dbInstance.AutoMigrateDb = true
 	dbInstance.Debug = true
