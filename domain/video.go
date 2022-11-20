@@ -1,10 +1,31 @@
 package domain
 
-import "time"
+import (
+	"github.com/asaskevich/govalidator"
+	"time"
+)
 
 type Video struct {
-	ID         string // id do sistema atual
-	ResourceID string // id do sistema que envia o video
-	FilePath   string
-	CreatedAt  time.Time
+	ID         string    `valid:"uuid"`    // id do sistema atual
+	ResourceID string    `valid:"notnull"` // id do sistema que envia o video
+	FilePath   string    `valid:"notnull"`
+	CreatedAt  time.Time `valid:"-"`
+}
+
+func init() {
+	govalidator.SetFieldsRequiredByDefault(true)
+}
+
+func NewVideo() *Video {
+	return &Video{}
+}
+
+func (video *Video) Validate() error {
+	isValid, err := govalidator.ValidateStruct(video)
+
+	if !isValid {
+		return err
+	}
+
+	return nil
 }
