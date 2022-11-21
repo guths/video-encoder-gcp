@@ -23,7 +23,7 @@ func NewDb() *Database {
 
 func NewDbTest() *gorm.DB {
 	dbInstance := NewDb()
-	dbInstance.Env = "Test"
+	dbInstance.Env = "test"
 	dbInstance.DsnTest = ":memory:"
 	dbInstance.AutoMigrateDb = true
 	dbInstance.Debug = true
@@ -51,10 +51,7 @@ func (d *Database) Connect() (*gorm.DB, error) {
 	}
 
 	if d.AutoMigrateDb {
-		err := d.Db.AutoMigrate(&domain.Video{}, &domain.Job{})
-		if err != nil {
-			return nil, err
-		}
+		d.Db.AutoMigrate(&domain.Video{}, &domain.Job{})
 	}
 
 	return d.Db, nil
