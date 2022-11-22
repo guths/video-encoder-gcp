@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	cloud.google.com/go/storage v1.28.0
 	gorm.io/driver/postgres v1.4.5
 	gorm.io/driver/sqlite v1.4.3
 	gorm.io/gorm v1.24.1
